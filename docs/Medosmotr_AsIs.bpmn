@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="Definitions_Medosmotr_AsIs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="18.13.2">
+  <bpmn:collaboration id="Collaboration_Medosmotr_AsIs">
+    <bpmn:participant id="Participant_Medosmotr_AsIs" name="Организация прохождения проф. медосмотра (As-Is)" processRef="Process_Medosmotr_AsIs" />
+    <bpmn:textAnnotation id="TextAnnotation_ListFields_AsIs">
+      <bpmn:text>Фамилия, Имя, Отчество, Дата рождения, крайний срок</bpmn:text>
+    </bpmn:textAnnotation>
+  </bpmn:collaboration>
+  <bpmn:process id="Process_Medosmotr_AsIs" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_Medosmotr_AsIs">
+      <bpmn:lane id="Lane_HR" name="Кадровый работник предприятия">
+        <bpmn:flowNodeRef>StartEvent_Request</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_PreparePaperList</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ReceiveConclusion</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Success</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Patient" name="Председатель врачебной комиссии">
+        <bpmn:flowNodeRef>Gateway_ExamDone</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CreateConclusion</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Chair" name="Пациент">
+        <bpmn:flowNodeRef>Task_PassExam</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_DeliverConclusion</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0bdkejo" name="Сотрудник регистратуры">
+        <bpmn:flowNodeRef>Task_ReviewPaperList</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_Request" name="Организовать медосмотр сотрудников">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent_Request" targetRef="Task_PreparePaperList" />
+    <bpmn:sequenceFlow id="Flow_9" sourceRef="Task_DeliverConclusion" targetRef="Task_ReceiveConclusion" />
+    <bpmn:sequenceFlow id="Flow_10" sourceRef="Task_ReceiveConclusion" targetRef="EndEvent_Success" />
+    <bpmn:dataStoreReference id="DataStoreReference_0gt0ovc" />
+    <bpmn:dataStoreReference id="DataStoreReference_1f896cj" name="E-mail" />
+    <bpmn:sequenceFlow id="Flow_19bwd8a" name="Да" sourceRef="Gateway_ExamDone" targetRef="Task_CreateConclusion" />
+    <bpmn:sequenceFlow id="Flow_1yt5wmg" sourceRef="Task_CreateConclusion" targetRef="Task_DeliverConclusion" />
+    <bpmn:sequenceFlow id="Flow_1fahuan" sourceRef="Task_ReviewPaperList" targetRef="Task_PassExam" />
+    <bpmn:sequenceFlow id="Flow_1svnwom" sourceRef="Task_PassExam" targetRef="Gateway_ExamDone" />
+    <bpmn:sequenceFlow id="Flow_0j2zm2j" name="Нет" sourceRef="Gateway_ExamDone" targetRef="Task_PassExam" />
+    <bpmn:task id="Task_PreparePaperList" name="Подготовить и отправить список сотрудников на медосмотр">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_1at05vy</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0v8wz4n">
+        <bpmn:targetRef>DataStoreReference_1f896cj</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:task id="Task_ReviewPaperList" name="Получить и распечатать список пациентов">
+      <bpmn:incoming>Flow_1at05vy</bpmn:incoming>
+      <bpmn:outgoing>Flow_1fahuan</bpmn:outgoing>
+      <bpmn:property id="Property_0v2hpok" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0ddw9ze">
+        <bpmn:sourceRef>DataStoreReference_1f896cj</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0v2hpok</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:task>
+    <bpmn:task id="Task_PassExam" name="Получить талон и пройти обследование у необходимых врачей">
+      <bpmn:incoming>Flow_1fahuan</bpmn:incoming>
+      <bpmn:incoming>Flow_0j2zm2j</bpmn:incoming>
+      <bpmn:outgoing>Flow_1svnwom</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_ExamDone" name="Обследование завершено?">
+      <bpmn:incoming>Flow_1svnwom</bpmn:incoming>
+      <bpmn:outgoing>Flow_19bwd8a</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0j2zm2j</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_DeliverConclusion" name="Получить бумажное заключение и отнести его кадровому работнику">
+      <bpmn:incoming>Flow_1yt5wmg</bpmn:incoming>
+      <bpmn:outgoing>Flow_9</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_CreateConclusion" name="Написать от руки заключение медицинской комиссии">
+      <bpmn:incoming>Flow_19bwd8a</bpmn:incoming>
+      <bpmn:outgoing>Flow_1yt5wmg</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ReceiveConclusion" name="Получить от пациента бумажное заключение">
+      <bpmn:incoming>Flow_9</bpmn:incoming>
+      <bpmn:outgoing>Flow_10</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="EndEvent_Success" name="Заявка успешно отработана">
+      <bpmn:incoming>Flow_10</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1at05vy" sourceRef="Task_PreparePaperList" targetRef="Task_ReviewPaperList" />
+    <bpmn:association id="Association_ListFields_AsIs" associationDirection="None" sourceRef="Task_PreparePaperList" targetRef="TextAnnotation_ListFields_AsIs" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Medosmotr_AsIs">
+    <bpmndi:BPMNPlane id="BPMNPlane_Medosmotr_AsIs" bpmnElement="Collaboration_Medosmotr_AsIs">
+      <bpmndi:BPMNShape id="Participant_Medosmotr_AsIs_di" bpmnElement="Participant_Medosmotr_AsIs" isHorizontal="true">
+        <dc:Bounds x="120" y="140" width="1830" height="700" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0bdkejo_di" bpmnElement="Lane_0bdkejo" isHorizontal="true">
+        <dc:Bounds x="150" y="320" width="1800" height="120" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Chair_di" bpmnElement="Lane_Chair" isHorizontal="true">
+        <dc:Bounds x="150" y="440" width="1800" height="180" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Patient_di" bpmnElement="Lane_Patient" isHorizontal="true">
+        <dc:Bounds x="150" y="620" width="1800" height="220" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_HR_di" bpmnElement="Lane_HR" isHorizontal="true">
+        <dc:Bounds x="150" y="140" width="1800" height="180" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_Request_di" bpmnElement="StartEvent_Request" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
+        <dc:Bounds x="210" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="176" y="252" width="105" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_PreparePaperList_di" bpmnElement="Task_PreparePaperList">
+        <dc:Bounds x="355" y="190" width="180" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ReviewPaperList_di" bpmnElement="Task_ReviewPaperList">
+        <dc:Bounds x="655" y="340" width="210" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_PassExam_di" bpmnElement="Task_PassExam">
+        <dc:Bounds x="930" y="490" width="220" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_ExamDone_di" bpmnElement="Gateway_ExamDone" isMarkerVisible="true">
+        <dc:Bounds x="1215" y="720" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1202" y="780" width="76" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_DeliverConclusion_di" bpmnElement="Task_DeliverConclusion">
+        <dc:Bounds x="1345" y="480" width="230" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_CreateConclusion_di" bpmnElement="Task_CreateConclusion">
+        <dc:Bounds x="1345" y="705" width="230" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ReceiveConclusion_di" bpmnElement="Task_ReceiveConclusion">
+        <dc:Bounds x="1620" y="190" width="180" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_Success_di" bpmnElement="EndEvent_Success" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
+        <dc:Bounds x="1872" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1848" y="252" width="84" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
+        <di:waypoint x="246" y="230" />
+        <di:waypoint x="355" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_9_di" bpmnElement="Flow_9">
+        <di:waypoint x="1575" y="520" />
+        <di:waypoint x="1710" y="520" />
+        <di:waypoint x="1710" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10_di" bpmnElement="Flow_10">
+        <di:waypoint x="1800" y="230" />
+        <di:waypoint x="1872" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19bwd8a_di" bpmnElement="Flow_19bwd8a">
+        <di:waypoint x="1265" y="745" />
+        <di:waypoint x="1345" y="745" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1298" y="727" width="14" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1yt5wmg_di" bpmnElement="Flow_1yt5wmg">
+        <di:waypoint x="1460" y="705" />
+        <di:waypoint x="1460" y="560" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fahuan_di" bpmnElement="Flow_1fahuan">
+        <di:waypoint x="865" y="380" />
+        <di:waypoint x="1040" y="380" />
+        <di:waypoint x="1040" y="490" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1svnwom_di" bpmnElement="Flow_1svnwom">
+        <di:waypoint x="1040" y="570" />
+        <di:waypoint x="1040" y="745" />
+        <di:waypoint x="1215" y="745" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0j2zm2j_di" bpmnElement="Flow_0j2zm2j">
+        <di:waypoint x="1240" y="720" />
+        <di:waypoint x="1240" y="530" />
+        <di:waypoint x="1150" y="530" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1245" y="643" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_ListFields_di" bpmnElement="Association_ListFields_AsIs">
+        <di:waypoint x="462" y="190" />
+        <di:waypoint x="448" y="115" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1at05vy_di" bpmnElement="Flow_1at05vy">
+        <di:waypoint x="535" y="230" />
+        <di:waypoint x="595" y="230" />
+        <di:waypoint x="595" y="380" />
+        <di:waypoint x="655" y="380" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="DataStoreReference_0gt0ovc_di" bpmnElement="DataStoreReference_0gt0ovc">
+        <dc:Bounds x="725" y="5485" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1f896cj_di" bpmnElement="DataStoreReference_1f896cj">
+        <dc:Bounds x="595" y="63" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="604" y="120" width="32" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_ListFields_di" bpmnElement="TextAnnotation_ListFields_AsIs">
+        <dc:Bounds x="370" y="60" width="150" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0v8wz4n_di" bpmnElement="DataOutputAssociation_0v8wz4n">
+        <di:waypoint x="496" y="190" />
+        <di:waypoint x="595" y="113" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0ddw9ze_di" bpmnElement="DataInputAssociation_0ddw9ze">
+        <di:waypoint x="633" y="113" />
+        <di:waypoint x="749" y="340" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

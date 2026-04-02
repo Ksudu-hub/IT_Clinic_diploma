@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="Definitions_Medosmotr" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="18.13.2">
+  <bpmn:collaboration id="Collaboration_Medosmotr">
+    <bpmn:participant id="Participant_Medosmotr" name="Организация прохождения проф. медосмотра (To-Be)" processRef="Process_Medosmotr" />
+    <bpmn:textAnnotation id="TextAnnotation_0vl8q87">
+      <bpmn:text>Фамилия, Имя, Отчество, Дата рождения, крайний срок</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1cu4xk4" associationDirection="None" sourceRef="Task_UploadList" targetRef="TextAnnotation_0vl8q87" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_Medosmotr" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_Medosmotr">
+      <bpmn:lane id="Lane_HR" name="Кадровый работник предприятия">
+        <bpmn:flowNodeRef>StartEvent_Request</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_PrepareList</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_UploadList</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Success</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ReceiveConclusion</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Chair" name="Председатель врачебной комиссии">
+        <bpmn:flowNodeRef>Task_OpenARM</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_ExamDone</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CreateConclusion</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Patient" name="Пациент">
+        <bpmn:flowNodeRef>Task_DeliverConclusion</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_PassExam</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Robots" name="Роботы IT-Клиники">
+        <bpmn:flowNodeRef>Task_ReadRMQ</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CreateRequest</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ControlDeadline</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_RequestActive</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_DeadlineExpired</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CloseExpired</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Expired</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_Request" name="Организовать медосмотр сотрудников">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_PrepareList" name="Подготовить список сотрудников на медосмотр">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_UploadList" name="Загрузить список сотрудников">
+      <bpmn:incoming>Flow_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_0xyb2x6</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_RMQ">
+        <bpmn:targetRef>DataStore_RMQ</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:dataStoreReference id="DataStore_RMQ" name="RabbitMQ" />
+    <bpmn:dataStoreReference id="DataStore_MIS" name="МИС IT-Клиника (1С)" />
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent_Request" targetRef="Task_PrepareList" />
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="Task_PrepareList" targetRef="Task_UploadList" />
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="Task_ReadRMQ" targetRef="Task_CreateRequest" />
+    <bpmn:sequenceFlow id="Flow_5" sourceRef="Task_CreateRequest" targetRef="Task_ControlDeadline" />
+    <bpmn:sequenceFlow id="Flow_6" sourceRef="Task_ControlDeadline" targetRef="Gateway_RequestActive" />
+    <bpmn:sequenceFlow id="Flow_7_no" name="Нет" sourceRef="Gateway_RequestActive" targetRef="Event_DeadlineExpired" />
+    <bpmn:sequenceFlow id="Flow_10_yes" name="Да" sourceRef="Gateway_ExamDone" targetRef="Task_CreateConclusion" />
+    <bpmn:sequenceFlow id="Flow_11" sourceRef="Task_CreateConclusion" targetRef="Task_DeliverConclusion" />
+    <bpmn:sequenceFlow id="Flow_14" sourceRef="Event_DeadlineExpired" targetRef="Task_CloseExpired" />
+    <bpmn:sequenceFlow id="Flow_15" sourceRef="Task_CloseExpired" targetRef="EndEvent_Expired" />
+    <bpmn:sequenceFlow id="Flow_0xyb2x6" sourceRef="Task_UploadList" targetRef="Task_ReadRMQ" />
+    <bpmn:task id="Task_ReadRMQ" name="Робот: Чтение объектов RMQ">
+      <bpmn:incoming>Flow_0xyb2x6</bpmn:incoming>
+      <bpmn:outgoing>Flow_4</bpmn:outgoing>
+      <bpmn:property id="Property_0ofryo7" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_03lea6r">
+        <bpmn:sourceRef>DataStoreReference_1vw85yu</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0ofryo7</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:task>
+    <bpmn:task id="Task_CreateRequest" name="Создать документы «Заявка на медосмотр»">
+      <bpmn:incoming>Flow_4</bpmn:incoming>
+      <bpmn:outgoing>Flow_5</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_MIS">
+        <bpmn:targetRef>DataStore_MIS</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:task id="Task_ControlDeadline" name="Контроль крайнего срока заявки">
+      <bpmn:incoming>Flow_5</bpmn:incoming>
+      <bpmn:outgoing>Flow_6</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_RequestActive" name="Заявка актуальна?">
+      <bpmn:incoming>Flow_6</bpmn:incoming>
+      <bpmn:outgoing>Flow_7_no</bpmn:outgoing>
+      <bpmn:outgoing>Flow_15m73go</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_OpenARM" name="Открыть АРМ председателя мед.комиссии и просмотреть список пациентов">
+      <bpmn:incoming>Flow_0hq8ok5</bpmn:incoming>
+      <bpmn:outgoing>Flow_1rg1g4s</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_ARM">
+        <bpmn:targetRef>DataStore_ARM</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:dataStoreReference id="DataStore_ARM" name="МИС IT-Клиника (1С)" />
+    <bpmn:intermediateCatchEvent id="Event_DeadlineExpired" name="Срок заявки истек">
+      <bpmn:incoming>Flow_7_no</bpmn:incoming>
+      <bpmn:outgoing>Flow_14</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerDefinition_Deadline" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:dataStoreReference id="DataStoreReference_1vw85yu" name="RabbitMQ" />
+    <bpmn:task id="Task_CloseExpired" name="Робот: Закрытие просроченных заявок на медосмотр">
+      <bpmn:incoming>Flow_14</bpmn:incoming>
+      <bpmn:outgoing>Flow_15</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_15m73go" name="Да" sourceRef="Gateway_RequestActive" targetRef="Task_PassExam" />
+    <bpmn:sequenceFlow id="Flow_0hq8ok5" sourceRef="Task_PassExam" targetRef="Task_OpenARM" />
+    <bpmn:exclusiveGateway id="Gateway_ExamDone" name="Медосмотр завершен?">
+      <bpmn:incoming>Flow_1rg1g4s</bpmn:incoming>
+      <bpmn:outgoing>Flow_10_yes</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0fn1ese</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1rg1g4s" sourceRef="Task_OpenARM" targetRef="Gateway_ExamDone" />
+    <bpmn:sequenceFlow id="Flow_0fn1ese" name="Нет" sourceRef="Gateway_ExamDone" targetRef="Task_PassExam" />
+    <bpmn:task id="Task_CreateConclusion" name="Сформировать и распечатать заключение медицинской комиссии">
+      <bpmn:incoming>Flow_10_yes</bpmn:incoming>
+      <bpmn:outgoing>Flow_11</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_DeliverConclusion" name="Получить распечатанное медицинское заключение и отнести его кадровому работнику">
+      <bpmn:incoming>Flow_11</bpmn:incoming>
+      <bpmn:outgoing>Flow_0d4l5my</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0i18foa" sourceRef="Task_ReceiveConclusion" targetRef="EndEvent_Success" />
+    <bpmn:endEvent id="EndEvent_Success" name="Заявка успешно отработана">
+      <bpmn:incoming>Flow_0i18foa</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="Task_ReceiveConclusion" name="Получить от пациента распечатанное заключение">
+      <bpmn:incoming>Flow_0d4l5my</bpmn:incoming>
+      <bpmn:outgoing>Flow_0i18foa</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0d4l5my" sourceRef="Task_DeliverConclusion" targetRef="Task_ReceiveConclusion" />
+    <bpmn:endEvent id="EndEvent_Expired" name="Заявка закрыта по сроку">
+      <bpmn:incoming>Flow_15</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="Task_PassExam" name="Пройти обследования у необходимых врачей">
+      <bpmn:incoming>Flow_15m73go</bpmn:incoming>
+      <bpmn:incoming>Flow_0fn1ese</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hq8ok5</bpmn:outgoing>
+    </bpmn:task>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Medosmotr">
+    <bpmndi:BPMNPlane id="BPMNPlane_Medosmotr" bpmnElement="Collaboration_Medosmotr">
+      <bpmndi:BPMNShape id="Participant_Medosmotr_di" bpmnElement="Participant_Medosmotr" isHorizontal="true">
+        <dc:Bounds x="120" y="140" width="2260" height="740" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Robots_di" bpmnElement="Lane_Robots" isHorizontal="true">
+        <dc:Bounds x="150" y="680" width="2230" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Patient_di" bpmnElement="Lane_Patient" isHorizontal="true">
+        <dc:Bounds x="150" y="510" width="2230" height="170" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Chair_di" bpmnElement="Lane_Chair" isHorizontal="true">
+        <dc:Bounds x="150" y="310" width="2230" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_HR_di" bpmnElement="Lane_HR" isHorizontal="true">
+        <dc:Bounds x="150" y="140" width="2230" height="170" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_Request_di" bpmnElement="StartEvent_Request" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
+        <dc:Bounds x="210" y="205" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="192" y="245" width="71" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_PrepareList_di" bpmnElement="Task_PrepareList">
+        <dc:Bounds x="300" y="183" width="130" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_UploadList_di" bpmnElement="Task_UploadList">
+        <dc:Bounds x="490" y="183" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ReadRMQ_di" bpmnElement="Task_ReadRMQ">
+        <dc:Bounds x="585" y="735" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_CreateRequest_di" bpmnElement="Task_CreateRequest">
+        <dc:Bounds x="790" y="735" width="160" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ControlDeadline_di" bpmnElement="Task_ControlDeadline">
+        <dc:Bounds x="1020" y="735" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_RequestActive_di" bpmnElement="Gateway_RequestActive" isMarkerVisible="true">
+        <dc:Bounds x="1265" y="750" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1261" y="810" width="59" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_OpenARM_di" bpmnElement="Task_OpenARM">
+        <dc:Bounds x="1375" y="370" width="170" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStore_ARM_di" bpmnElement="DataStore_ARM">
+        <dc:Bounds x="1565" y="275" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1548" y="330" width="84" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_DeadlineExpired_di" bpmnElement="Event_DeadlineExpired">
+        <dc:Bounds x="1462" y="757" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1449" y="797" width="63" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_CloseExpired_di" bpmnElement="Task_CloseExpired">
+        <dc:Bounds x="1585" y="735" width="190" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_ExamDone_di" bpmnElement="Gateway_ExamDone" isMarkerVisible="true">
+        <dc:Bounds x="1675" y="385" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1671" y="348" width="59" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_CreateConclusion_di" bpmnElement="Task_CreateConclusion">
+        <dc:Bounds x="1805" y="370" width="170" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_DeliverConclusion_di" bpmnElement="Task_DeliverConclusion">
+        <dc:Bounds x="1805" y="555" width="190" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_Success_di" bpmnElement="EndEvent_Success" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
+        <dc:Bounds x="2282" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2259" y="252" width="84" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ReceiveConclusion_di" bpmnElement="Task_ReceiveConclusion">
+        <dc:Bounds x="2060" y="190" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_Expired_di" bpmnElement="EndEvent_Expired" bioc:stroke="#5b176d" bioc:fill="#f8bbd0" color:background-color="#f8bbd0" color:border-color="#5b176d">
+        <dc:Bounds x="1922" y="757" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1900" y="797" width="81" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_PassExam_di" bpmnElement="Task_PassExam">
+        <dc:Bounds x="1180" y="555" width="220" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
+        <di:waypoint x="246" y="223" />
+        <di:waypoint x="300" y="223" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_2_di" bpmnElement="Flow_2">
+        <di:waypoint x="430" y="223" />
+        <di:waypoint x="490" y="223" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_4_di" bpmnElement="Flow_4">
+        <di:waypoint x="715" y="775" />
+        <di:waypoint x="790" y="775" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_5_di" bpmnElement="Flow_5">
+        <di:waypoint x="950" y="775" />
+        <di:waypoint x="1020" y="775" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_6_di" bpmnElement="Flow_6">
+        <di:waypoint x="1180" y="775" />
+        <di:waypoint x="1265" y="775" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_7_no_di" bpmnElement="Flow_7_no">
+        <di:waypoint x="1315" y="775" />
+        <di:waypoint x="1462" y="775" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1364" y="751" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10_yes_di" bpmnElement="Flow_10_yes">
+        <di:waypoint x="1725" y="410" />
+        <di:waypoint x="1805" y="410" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1758" y="392" width="14" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11_di" bpmnElement="Flow_11">
+        <di:waypoint x="1900" y="450" />
+        <di:waypoint x="1900" y="555" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14_di" bpmnElement="Flow_14">
+        <di:waypoint x="1498" y="775" />
+        <di:waypoint x="1585" y="775" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15_di" bpmnElement="Flow_15">
+        <di:waypoint x="1775" y="775" />
+        <di:waypoint x="1922" y="775" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xyb2x6_di" bpmnElement="Flow_0xyb2x6">
+        <di:waypoint x="610" y="223" />
+        <di:waypoint x="650" y="223" />
+        <di:waypoint x="650" y="735" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15m73go_di" bpmnElement="Flow_15m73go">
+        <di:waypoint x="1290" y="750" />
+        <di:waypoint x="1290" y="635" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1298" y="637" width="14" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hq8ok5_di" bpmnElement="Flow_0hq8ok5">
+        <di:waypoint x="1290" y="555" />
+        <di:waypoint x="1290" y="410" />
+        <di:waypoint x="1375" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1rg1g4s_di" bpmnElement="Flow_1rg1g4s">
+        <di:waypoint x="1545" y="410" />
+        <di:waypoint x="1675" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fn1ese_di" bpmnElement="Flow_0fn1ese">
+        <di:waypoint x="1700" y="435" />
+        <di:waypoint x="1700" y="595" />
+        <di:waypoint x="1400" y="595" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1705" y="493" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0i18foa_di" bpmnElement="Flow_0i18foa">
+        <di:waypoint x="2220" y="230" />
+        <di:waypoint x="2282" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d4l5my_di" bpmnElement="Flow_0d4l5my">
+        <di:waypoint x="1995" y="595" />
+        <di:waypoint x="2028" y="595" />
+        <di:waypoint x="2028" y="230" />
+        <di:waypoint x="2060" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="DataStore_MIS_di" bpmnElement="DataStore_MIS">
+        <dc:Bounds x="895" y="885" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="879" y="940" width="84" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1vw85yu_di" bpmnElement="DataStoreReference_1vw85yu">
+        <dc:Bounds x="675" y="895" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="675" y="952" width="50" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStore_RMQ_di" bpmnElement="DataStore_RMQ">
+        <dc:Bounds x="625" y="65" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="625" y="120" width="50" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0vl8q87_di" bpmnElement="TextAnnotation_0vl8q87">
+        <dc:Bounds x="430" y="67" width="100.00000467344229" height="68.91271056661563" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_RMQ_di" bpmnElement="DataOutputAssociation_RMQ">
+        <di:waypoint x="582" y="183" />
+        <di:waypoint x="630" y="115" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_03lea6r_di" bpmnElement="DataInputAssociation_03lea6r">
+        <di:waypoint x="689" y="895" />
+        <di:waypoint x="654" y="815" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_MIS_di" bpmnElement="DataOutputAssociation_MIS">
+        <di:waypoint x="874" y="815" />
+        <di:waypoint x="895" y="886" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_ARM_di" bpmnElement="DataOutputAssociation_ARM">
+        <di:waypoint x="1465" y="370" />
+        <di:waypoint x="1565" y="319" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1cu4xk4_di" bpmnElement="Association_1cu4xk4">
+        <di:waypoint x="530" y="183" />
+        <di:waypoint x="507" y="136" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

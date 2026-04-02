@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.18">
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="ГруппаОтборы" id="29">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа отборы</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа отборы</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>AlwaysHorizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаОтборыРасширеннаяПодсказка" id="30"/>
+			<ChildItems>
+				<InputField name="ДатаЗаявкиС" id="31">
+					<DataPath>ДатаЗаявкиС</DataPath>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="ДатаЗаявкиСКонтекстноеМеню" id="32"/>
+					<ExtendedTooltip name="ДатаЗаявкиСРасширеннаяПодсказка" id="33"/>
+					<Events>
+						<Event name="OnChange">ДатаЗаявкиСПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="КрайнийСрокДо" id="34">
+					<DataPath>КрайнийСрокДо</DataPath>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="КрайнийСрокДоКонтекстноеМеню" id="35"/>
+					<ExtendedTooltip name="КрайнийСрокДоРасширеннаяПодсказка" id="36"/>
+					<Events>
+						<Event name="OnChange">КрайнийСрокПриИзменении</Event>
+					</Events>
+				</InputField>
+				<CheckBoxField name="ПоказатьОтмененные" id="37">
+					<DataPath>ПоказатьПросроченные</DataPath>
+					<TitleLocation>Right</TitleLocation>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ПоказатьОтмененныеКонтекстноеМеню" id="38"/>
+					<ExtendedTooltip name="ПоказатьОтмененныеРасширеннаяПодсказка" id="39"/>
+					<Events>
+						<Event name="OnChange">ПоказатьОтмененныеПриИзменении</Event>
+					</Events>
+				</CheckBoxField>
+				<CheckBoxField name="СкрытьОбработанныеЗаявки" id="46">
+					<DataPath>СкрытьОбработанныеЗаявки</DataPath>
+					<TitleLocation>Right</TitleLocation>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="СкрытьОбработанныеЗаявкиКонтекстноеМеню" id="47"/>
+					<ExtendedTooltip name="СкрытьОбработанныеЗаявкиРасширеннаяПодсказка" id="48"/>
+					<Events>
+						<Event name="OnChange">СкрытьОбработанныеЗаявкиПриИзменении</Event>
+					</Events>
+				</CheckBoxField>
+			</ChildItems>
+		</UsualGroup>
+		<Table name="ЗаявкиНаМедосмотр" id="1">
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<EnableStartDrag>true</EnableStartDrag>
+			<DataPath>ЗаявкиНаМедосмотр</DataPath>
+			<RowPictureDataPath>ЗаявкиНаМедосмотр.DefaultPicture</RowPictureDataPath>
+			<CommandSet>
+				<ExcludedCommand>Change</ExcludedCommand>
+				<ExcludedCommand>ChangeHistory</ExcludedCommand>
+				<ExcludedCommand>Copy</ExcludedCommand>
+				<ExcludedCommand>CopyToClipboard</ExcludedCommand>
+				<ExcludedCommand>Create</ExcludedCommand>
+				<ExcludedCommand>Delete</ExcludedCommand>
+				<ExcludedCommand>DynamicListStandardSettings</ExcludedCommand>
+				<ExcludedCommand>GetURL</ExcludedCommand>
+				<ExcludedCommand>LoadDynamicListSettings</ExcludedCommand>
+				<ExcludedCommand>SaveDynamicListSettings</ExcludedCommand>
+				<ExcludedCommand>SearchEverywhere</ExcludedCommand>
+				<ExcludedCommand>ShowMultipleSelection</ExcludedCommand>
+			</CommandSet>
+			<AutoRefresh>true</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="ЗаявкиНаМедосмотрКонтекстноеМеню" id="2"/>
+			<AutoCommandBar name="ЗаявкиНаМедосмотрКоманднаяПанель" id="3"/>
+			<ExtendedTooltip name="ЗаявкиНаМедосмотрРасширеннаяПодсказка" id="4"/>
+			<SearchStringAddition name="ЗаявкиНаМедосмотрСтрокаПоиска" id="5">
+				<AdditionSource>
+					<Item>ЗаявкиНаМедосмотр</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ЗаявкиНаМедосмотрСтрокаПоискаКонтекстноеМеню" id="6"/>
+				<ExtendedTooltip name="ЗаявкиНаМедосмотрСтрокаПоискаРасширеннаяПодсказка" id="7"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ЗаявкиНаМедосмотрСостояниеПросмотра" id="8">
+				<AdditionSource>
+					<Item>ЗаявкиНаМедосмотр</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ЗаявкиНаМедосмотрСостояниеПросмотраКонтекстноеМеню" id="9"/>
+				<ExtendedTooltip name="ЗаявкиНаМедосмотрСостояниеПросмотраРасширеннаяПодсказка" id="10"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ЗаявкиНаМедосмотрУправлениеПоиском" id="11">
+				<AdditionSource>
+					<Item>ЗаявкиНаМедосмотр</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ЗаявкиНаМедосмотрУправлениеПоискомКонтекстноеМеню" id="12"/>
+				<ExtendedTooltip name="ЗаявкиНаМедосмотрУправлениеПоискомРасширеннаяПодсказка" id="13"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="Selection">ЗаявкиНаМедосмотрВыбор</Event>
+				<Event name="BeforeAddRow">ЗаявкиНаМедосмотрПередНачаломДобавления</Event>
+				<Event name="BeforeDeleteRow">ЗаявкиНаМедосмотрПередУдалением</Event>
+			</Events>
+			<ChildItems>
+				<LabelField name="ДатаЗаявки" id="14">
+					<DataPath>ЗаявкиНаМедосмотр.ДатаЗаявки</DataPath>
+					<ContextMenu name="ДатаЗаявкиКонтекстноеМеню" id="15"/>
+					<ExtendedTooltip name="ДатаЗаявкиРасширеннаяПодсказка" id="16"/>
+				</LabelField>
+				<LabelField name="Пациент" id="26">
+					<DataPath>ЗаявкиНаМедосмотр.Пациент</DataPath>
+					<ContextMenu name="ПациентКонтекстноеМеню" id="27"/>
+					<ExtendedTooltip name="ПациентРасширеннаяПодсказка" id="28"/>
+				</LabelField>
+				<LabelField name="ЗаявкаНаМедосмотр" id="20">
+					<DataPath>ЗаявкиНаМедосмотр.ЗаявкаНаМедосмотр</DataPath>
+					<ContextMenu name="ЗаявкаНаМедосмотрКонтекстноеМеню" id="21"/>
+					<ExtendedTooltip name="ЗаявкаНаМедосмотрРасширеннаяПодсказка" id="22"/>
+				</LabelField>
+				<LabelField name="ЗаключениеМедКомиссии" id="17">
+					<DataPath>ЗаявкиНаМедосмотр.ЗаключениеМедКомиссии</DataPath>
+					<ContextMenu name="ЗаключениеМедКомиссииКонтекстноеМеню" id="18"/>
+					<ExtendedTooltip name="ЗаключениеМедКомиссииРасширеннаяПодсказка" id="19"/>
+				</LabelField>
+				<LabelField name="ТипДопуска" id="43">
+					<DataPath>ЗаявкиНаМедосмотр.ЗаключениеМедКомиссии.ТипДопуска</DataPath>
+					<ContextMenu name="ТипДопускаКонтекстноеМеню" id="44"/>
+					<ExtendedTooltip name="ТипДопускаРасширеннаяПодсказка" id="45"/>
+				</LabelField>
+				<LabelField name="КрайнийСрок" id="23">
+					<DataPath>ЗаявкиНаМедосмотр.КрайнийСрок</DataPath>
+					<ContextMenu name="КрайнийСрокКонтекстноеМеню" id="24"/>
+					<ExtendedTooltip name="КрайнийСрокРасширеннаяПодсказка" id="25"/>
+				</LabelField>
+				<CheckBoxField name="Просрочена" id="49">
+					<DataPath>ЗаявкиНаМедосмотр.Просрочена</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ПросроченаКонтекстноеМеню" id="50"/>
+					<ExtendedTooltip name="ПросроченаРасширеннаяПодсказка" id="51"/>
+				</CheckBoxField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.АРМПредседателяМедКомиссии</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="ЗаявкиНаМедосмотр" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заявки на медосмотр</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>ВЫБРАТЬ
+	РеестрЗаявок.Пациент КАК Пациент,
+	РеестрЗаявок.ЗаявкаНаМедосмотр КАК ЗаявкаНаМедосмотр,
+	РеестрЗаявок.ДатаЗаявки КАК ДатаЗаявки,
+	РеестрЗаявок.КрайнийСрок КАК КрайнийСрок,
+	РеестрЗаявок.ЗаключениеМедКомиссии КАК ЗаключениеМедКомиссии,
+	РеестрЗаявок.Просрочена КАК Просрочена
+ИЗ
+	РегистрСведений.РеестрЗаявокНаМедосмотр КАК РеестрЗаявок
+ГДЕ
+	ВЫБОР
+			КОГДА &amp;Просрочена
+				ТОГДА ИСТИНА
+			ИНАЧЕ РеестрЗаявок.Просрочена = ЛОЖЬ
+		КОНЕЦ
+	И РеестрЗаявок.ДатаЗаявки &gt;= &amp;ДатаЗаявки
+	И РеестрЗаявок.КрайнийСрок &lt;= &amp;КрайнийСрок
+	И ВЫБОР
+			КОГДА &amp;СкрытьОбработанныеЗаявки
+				ТОГДА РеестрЗаявок.ЗаключениеМедКомиссии = ЗНАЧЕНИЕ(Документ.ЗаключениеМедицинскойКомиссии.ПустаяСсылка)
+			ИНАЧЕ ИСТИНА
+		КОНЕЦ</QueryText>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Пациент</dcssch:dataPath>
+					<dcssch:field>Пациент</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ЗаключениеМедКомиссии</dcssch:dataPath>
+					<dcssch:field>ЗаключениеМедКомиссии</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ЗаявкаНаМедосмотр</dcssch:dataPath>
+					<dcssch:field>ЗаявкаНаМедосмотр</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ДатаЗаявки</dcssch:dataPath>
+					<dcssch:field>ДатаЗаявки</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>КрайнийСрок</dcssch:dataPath>
+					<dcssch:field>КрайнийСрок</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Просрочена</dcssch:dataPath>
+					<dcssch:field>Просрочена</dcssch:field>
+				</Field>
+				<Parameter>
+					<dcssch:name>ДатаЗаявки</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Дата заявки</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:DateQualifiers>
+							<v8:DateFractions>DateTime</v8:DateFractions>
+						</v8:DateQualifiers>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:dateTime">0001-01-01T00:00:00</dcssch:value>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>КрайнийСрок</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Крайний срок</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:DateQualifiers>
+							<v8:DateFractions>DateTime</v8:DateFractions>
+						</v8:DateQualifiers>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:dateTime">0001-01-01T00:00:00</dcssch:value>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>СкрытьОбработанныеЗаявки</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Скрыть обработанные заявки</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:boolean</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:boolean">false</dcssch:value>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>Просрочена</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Просрочена</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:boolean</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:boolean">false</dcssch:value>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<MainTable>InformationRegister.РеестрЗаявокНаМедосмотр</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="ДатаЗаявкиС" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Дата заявки с</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="КрайнийСрокДо" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Крайний срок до</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ПоказатьПросроченные" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Показать просроченные</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="СкрытьОбработанныеЗаявки" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Скрыть обработанные заявки</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<ConditionalAppearance>
+			<dcsset:item>
+				<dcsset:selection>
+					<dcsset:item>
+						<dcsset:field>ЗаявкиНаМедосмотр</dcsset:field>
+					</dcsset:item>
+				</dcsset:selection>
+				<dcsset:filter>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:left xsi:type="dcscor:Field">ЗаявкиНаМедосмотр.Просрочена</dcsset:left>
+						<dcsset:comparisonType>Equal</dcsset:comparisonType>
+						<dcsset:right xsi:type="xs:boolean">true</dcsset:right>
+					</dcsset:item>
+				</dcsset:filter>
+				<dcsset:appearance>
+					<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+						<dcscor:parameter>ЦветФона</dcscor:parameter>
+						<dcscor:value xsi:type="v8ui:Color">web:MistyRose</dcscor:value>
+					</dcscor:item>
+				</dcsset:appearance>
+			</dcsset:item>
+			<dcsset:item>
+				<dcsset:selection>
+					<dcsset:item>
+						<dcsset:field>ЗаявкиНаМедосмотр</dcsset:field>
+					</dcsset:item>
+				</dcsset:selection>
+				<dcsset:filter>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:left xsi:type="dcscor:Field">ЗаявкиНаМедосмотр.ДатаЗаявки</dcsset:left>
+						<dcsset:comparisonType>Less</dcsset:comparisonType>
+						<dcsset:right xsi:type="v8:StandardBeginningDate">
+							<v8:variant xsi:type="v8:StandardBeginningDateVariant">BeginningOfThisDay</v8:variant>
+						</dcsset:right>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:left xsi:type="dcscor:Field">ЗаявкиНаМедосмотр.Просрочена</dcsset:left>
+						<dcsset:comparisonType>Equal</dcsset:comparisonType>
+						<dcsset:right xsi:type="xs:boolean">false</dcsset:right>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:left xsi:type="dcscor:Field">ЗаявкиНаМедосмотр.ЗаключениеМедКомиссии</dcsset:left>
+						<dcsset:comparisonType>NotFilled</dcsset:comparisonType>
+					</dcsset:item>
+				</dcsset:filter>
+				<dcsset:appearance>
+					<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+						<dcscor:parameter>ЦветФона</dcscor:parameter>
+						<dcscor:value xsi:type="v8ui:Color">web:LemonChiffon</dcscor:value>
+					</dcscor:item>
+				</dcsset:appearance>
+			</dcsset:item>
+		</ConditionalAppearance>
+	</Attributes>
+</Form>

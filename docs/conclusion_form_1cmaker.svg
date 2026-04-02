@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="940" viewBox="0 0 1400 940">
+  <defs>
+    <style>
+      .bg { fill: #f8f5ee; }
+      .card { fill: #fffdfa; stroke: #d1c8bb; stroke-width: 2; rx: 14; ry: 14; }
+      .top { fill: #efe6d9; }
+      .title { font: 700 30px Arial, sans-serif; fill: #3a342c; }
+      .sub { font: 400 17px Arial, sans-serif; fill: #71685d; }
+      .toolbar { fill: #f7f2ea; stroke: #d8cec0; stroke-width: 1.5; rx: 10; ry: 10; }
+      .primary { fill: #f2c84b; stroke: #ad8b2f; stroke-width: 1.5; rx: 8; ry: 8; }
+      .secondary { fill: #f4f1eb; stroke: #bfb6a8; stroke-width: 1.5; rx: 8; ry: 8; }
+      .btn { font: 700 20px Arial, sans-serif; fill: #312c25; }
+      .group { fill: #fffdfa; stroke: #d8cec0; stroke-width: 1.5; rx: 10; ry: 10; }
+      .group-title { font: 700 18px Arial, sans-serif; fill: #6b6155; }
+      .label { font: 600 22px Arial, sans-serif; fill: #37322b; }
+      .field { fill: #fff; stroke: #bbb1a3; stroke-width: 2; rx: 6; ry: 6; }
+      .area { fill: #fff; stroke: #bbb1a3; stroke-width: 2; rx: 6; ry: 6; }
+      .value { font: 400 21px Arial, sans-serif; fill: #252525; }
+      .note { fill: #fffaf0; stroke: #d8c9a2; stroke-width: 1.5; rx: 8; ry: 8; }
+      .note-title { font: 700 18px Arial, sans-serif; fill: #77602c; }
+      .note-text { font: 400 17px Arial, sans-serif; fill: #665b45; }
+    </style>
+  </defs>
+  <rect class="bg" width="1400" height="940"/>
+  <rect class="card" x="46" y="30" width="1308" height="868"/>
+  <rect class="card top" x="46" y="30" width="1308" height="92"/>
+  <text class="title" x="78" y="84">Заключение медицинской комиссии</text>
+  <text class="sub" x="78" y="110"></text>
+
+  <rect class="toolbar" x="78" y="146" width="884" height="82"/>
+  <rect class="primary" x="96" y="160" width="244" height="52"/><text class="btn" x="124" y="193">Провести и закрыть</text>
+  <rect class="secondary" x="356" y="160" width="160" height="52"/><text class="btn" x="409" y="193">Записать</text>
+  <rect class="secondary" x="532" y="160" width="160" height="52"/><text class="btn" x="585" y="193">Провести</text>
+  <rect class="secondary" x="708" y="160" width="220" height="52"/><text class="btn" x="735" y="193">Печать заключения</text>
+
+  <rect class="group" x="78" y="252" width="884" height="598"/>
+  <text class="group-title" x="98" y="280">Реквизиты и текст заключения</text>
+  <text class="label" x="102" y="338">Номер</text><rect class="field" x="286" y="304" width="188" height="50"/><text class="value" x="304" y="336">Автонумерация</text>
+  <text class="label" x="102" y="412">Дата</text><rect class="field" x="286" y="378" width="322" height="50"/><text class="value" x="304" y="410">Дата и время документа</text>
+  <text class="label" x="102" y="486">Заявка на медосмотр</text><rect class="field" x="286" y="452" width="610" height="50"/><text class="value" x="304" y="484">Ссылка на исходную заявку</text>
+  <text class="label" x="102" y="560">Пациент</text><rect class="field" x="286" y="526" width="610" height="50"/><text class="value" x="304" y="558">ФИО пациента, дата рождения</text>
+  <text class="label" x="102" y="634">Тип допуска</text><rect class="field" x="286" y="600" width="344" height="78"/><text class="value" x="304" y="622">Допущен</text><text class="value" x="304" y="644">Не допущен</text><text class="value" x="304" y="666">Допущен с ограничениями</text><line x1="596" y1="600" x2="596" y2="678" stroke="#bbb1a3" stroke-width="2"/><polygon points="610,632 626,632 618,644" fill="#7b7266"/>
+  <text class="label" x="102" y="724">Медицинское заключение</text><rect class="area" x="102" y="750" width="794" height="90"/><text class="value" x="124" y="786">Многострочный текст заключения, ограничений и рекомендаций.</text>
+</svg>

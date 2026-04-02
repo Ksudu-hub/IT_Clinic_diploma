@@ -1,0 +1,86 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="980" viewBox="0 0 1680 980">
+  <defs>
+    <style>
+      .bg { fill: #f8f5ee; }
+      .card { fill: #fffdfa; stroke: #d1c8bb; stroke-width: 2; rx: 14; ry: 14; }
+      .top { fill: #efe6d9; }
+      .title { font: 700 30px Arial, sans-serif; fill: #3a342c; }
+      .sub { font: 400 17px Arial, sans-serif; fill: #71685d; }
+      .filter { fill: #f7f2ea; stroke: #d8cec0; stroke-width: 1.5; rx: 10; ry: 10; }
+      .label { font: 600 19px Arial, sans-serif; fill: #37322b; }
+      .field { fill: #fff; stroke: #bbb1a3; stroke-width: 2; rx: 6; ry: 6; }
+      .value { font: 400 18px Arial, sans-serif; fill: #252525; }
+      .head { fill: #eee5d7; stroke: #c6bcaf; stroke-width: 1; }
+      .row1 { fill: #fff; }
+      .row2 { fill: #fff9e7; }
+      .row3 { fill: #fde6e6; }
+      .grid { stroke: #d8cec0; stroke-width: 1; }
+      .cellh { font: 700 18px Arial, sans-serif; fill: #302a24; }
+      .cell { font: 400 17px Arial, sans-serif; fill: #292929; }
+      .note { fill: #fffaf0; stroke: #d8c9a2; stroke-width: 1.5; rx: 8; ry: 8; }
+      .note-title { font: 700 18px Arial, sans-serif; fill: #77602c; }
+      .note-text { font: 400 17px Arial, sans-serif; fill: #665b45; }
+    </style>
+  </defs>
+  <rect class="bg" width="1680" height="980"/>
+  <rect class="card" x="34" y="28" width="1612" height="914"/>
+  <rect class="card top" x="34" y="28" width="1612" height="92"/>
+  <text class="title" x="66" y="82">АРМ председателя медицинской комиссии</text>
+  <text class="sub" x="66" y="108"></text>
+
+  <rect class="filter" x="66" y="144" width="1450" height="80"/>
+  <text class="label" x="88" y="192">Дата заявки с</text>
+  <rect class="field" x="206" y="156" width="178" height="44"/>
+  <text class="value" x="222" y="184"></text>
+  <text class="label" x="414" y="192">Крайний срок до</text>
+  <rect class="field" x="574" y="156" width="178" height="44"/>
+  <text class="value" x="590" y="184"></text>
+  <rect class="field" x="788" y="156" width="26" height="26"/>
+  <text class="label" x="824" y="181">Показать просроченные</text>
+  <rect class="field" x="1080" y="156" width="26" height="26"/>
+  <text class="label" x="1116" y="181">Скрыть обработанные заявки</text>
+  <rect class="field" x="1336" y="156" width="150" height="44"/>
+  <text class="value" x="1354" y="184">Поиск</text>
+
+  <rect class="head" x="66" y="248" width="1450" height="52"/>
+  <line class="grid" x1="220" y1="248" x2="220" y2="806"/>
+  <line class="grid" x1="500" y1="248" x2="500" y2="806"/>
+  <line class="grid" x1="816" y1="248" x2="816" y2="806"/>
+  <line class="grid" x1="1090" y1="248" x2="1090" y2="806"/>
+  <line class="grid" x1="1294" y1="248" x2="1294" y2="806"/>
+  <line class="grid" x1="1460" y1="248" x2="1460" y2="806"/>
+  <text class="cellh" x="82" y="280">Дата заявки</text>
+  <text class="cellh" x="238" y="280">Пациент</text>
+  <text class="cellh" x="520" y="280">Заявка на медосмотр</text>
+  <text class="cellh" x="836" y="280">Заключение мед. комиссии</text>
+  <text class="cellh" x="1110" y="280">Тип допуска</text>
+  <text class="cellh" x="1312" y="280">Крайний срок</text>
+  <text class="cellh" x="1478" y="280">Просрочена</text>
+
+  <rect class="row1" x="66" y="300" width="1450" height="56"/>
+  <rect class="row3" x="66" y="356" width="1450" height="56"/>
+  <rect class="row2" x="66" y="412" width="1450" height="56"/>
+  <rect class="row1" x="66" y="468" width="1450" height="56"/>
+  <rect class="row1" x="66" y="524" width="1450" height="56"/>
+  <rect class="row1" x="66" y="580" width="1450" height="56"/>
+  <rect class="row1" x="66" y="636" width="1450" height="56"/>
+  <rect class="row1" x="66" y="692" width="1450" height="56"/>
+  <rect class="row1" x="66" y="748" width="1450" height="58"/>
+
+  <text class="cell" x="82" y="334">29.03.2026</text><text class="cell" x="238" y="334">Петрова Василиса Олеговна</text><text class="cell" x="520" y="334">Заявка 00000001</text><text class="cell" x="836" y="334">Заключение 00000001</text><text class="cell" x="1110" y="334">Допущен</text><text class="cell" x="1312" y="334">30.04.2026</text><text class="cell" x="1478" y="334"></text>
+  <text class="cell" x="82" y="390">29.03.2026</text><text class="cell" x="238" y="390">Иванов Владимир Петрович</text><text class="cell" x="520" y="390">Заявка 00000002</text><text class="cell" x="836" y="390"></text><text class="cell" x="1110" y="390"></text><text class="cell" x="1312" y="390">31.03.2026</text><text class="cell" x="1478" y="390">V</text>
+  <text class="cell" x="82" y="446">27.03.2026</text><text class="cell" x="238" y="446">Берегова Елена Васильевна</text><text class="cell" x="520" y="446">Заявка 00000003</text><text class="cell" x="836" y="446">Заключение 00000003</text><text class="cell" x="1110" y="446">Допущен</text><text class="cell" x="1312" y="446">15.05.2026</text><text class="cell" x="1478" y="446"></text>
+  <text class="cell" x="82" y="502">29.03.2026</text><text class="cell" x="238" y="502">Сидоров Игорь Федорович</text><text class="cell" x="520" y="502">Заявка 00000004</text><text class="cell" x="836" y="502">Заключение 00000004</text><text class="cell" x="1110" y="502">Допущен с ограничениями</text><text class="cell" x="1312" y="502">22.04.2026</text><text class="cell" x="1478" y="502"></text>
+  <text class="cell" x="82" y="558">29.03.2026</text><text class="cell" x="238" y="558">Поздняков Николай Сергеевич</text><text class="cell" x="520" y="558">Заявка 00000006</text><text class="cell" x="836" y="558"></text><text class="cell" x="1110" y="558"></text><text class="cell" x="1312" y="558">01.06.2026</text><text class="cell" x="1478" y="558"></text>
+
+  <rect class="note" x="66" y="836" width="790" height="74"/>
+  <text class="note-title" x="88" y="866">Для чего подходит этот вариант</text>
+  <text class="note-text" x="88" y="894">Хорош для быстрого согласования фильтров, цветов строк и общей логики рабочего списка.</text>
+
+  <rect class="note" x="886" y="836" width="630" height="74"/>
+  <text class="note-title" x="908" y="866">Отличие от строгой версии</text>
+  <text class="note-text" x="908" y="894">Более мягкая композиция и чуть больше акцента на визуальную читаемость, а не на техническую сухость.</text>
+</svg>
+
+
+
