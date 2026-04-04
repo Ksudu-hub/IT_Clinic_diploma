@@ -147,7 +147,7 @@
 		<Metadata name="Catalog.Организации.Form.ФормаЭлемента" id="9ab31115-47b7-41a1-9f3b-ecf8a853747e" configVersion="619e506f10c97e448ff06d7ccccbc18c00000000"/>
 		<Metadata name="Catalog.Организации.Form.ФормаЭлемента.Form" id="9ab31115-47b7-41a1-9f3b-ecf8a853747e.0" configVersion="1275e91a11f9734b9e91feb2b9c1869400000000"/>
 		<Metadata name="Catalog.Организации.Help" id="8fa0d9d7-c555-441a-a39b-5720ba0b9cfa.1" configVersion="6c0d02fb8327f14387092858090f680200000000"/>
-		<Metadata name="Catalog.Пациенты" id="91b4d51e-409a-4767-b57c-22c1ee2e8205" configVersion="ebeef26f013d134ba1f34c70b1c3cbdd00000000">
+		<Metadata name="Catalog.Пациенты" id="91b4d51e-409a-4767-b57c-22c1ee2e8205" configVersion="8158d98ca2987043aeaab73fa4d2437d00000000">
 			<Metadata name="Catalog.Пациенты.Attribute.Отчество" id="02db51c9-b37c-462e-b053-2509a74b2c18"/>
 			<Metadata name="Catalog.Пациенты.Attribute.ДатаРождения" id="0f2632da-20dc-4a30-bece-eef90f49c859"/>
 			<Metadata name="Catalog.Пациенты.Attribute.Фамилия" id="7df24b7e-551b-474c-aee5-9b1b6d4f6b18"/>
@@ -656,11 +656,11 @@
 			<Metadata name="Document.ЗаявкаНаМедосмотр.Attribute.Пациент" id="6928585e-b366-45fb-9737-d2f6c8f706da"/>
 			<Metadata name="Document.ЗаявкаНаМедосмотр.Attribute.Фамилия" id="c019d2dd-2064-4ed8-bfd0-3776aaedfc6c"/>
 		</Metadata>
-		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаДокумента" id="cbbe23d6-2740-4d5e-82f5-0c7eb1518920" configVersion="7526489e9ad56a449d79052e19e51b3b00000000"/>
-		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаДокумента.Form" id="cbbe23d6-2740-4d5e-82f5-0c7eb1518920.0" configVersion="afc203c671ff4c41b1b7a4557e3e03c100000000"/>
+		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаДокумента" id="cbbe23d6-2740-4d5e-82f5-0c7eb1518920" configVersion="fbc60e07d9e0eb49ab41482d6802d43200000000"/>
+		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаДокумента.Form" id="cbbe23d6-2740-4d5e-82f5-0c7eb1518920.0" configVersion="b9660163d310454aa77eba53341b03ab00000000"/>
 		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаДокумента.Help" id="cbbe23d6-2740-4d5e-82f5-0c7eb1518920.1" configVersion="b259e2b1fe3eac41ad9ee55c85b1c36300000000"/>
-		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаСписка" id="b6daf566-1c37-4564-9835-033d42b89a07" configVersion="188ec6f706b16f44bee714fd4dab160b00000000"/>
-		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаСписка.Form" id="b6daf566-1c37-4564-9835-033d42b89a07.0" configVersion="4acc21bb9f692343a20195a026d3a8a000000000"/>
+		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаСписка" id="b6daf566-1c37-4564-9835-033d42b89a07" configVersion="c606b999f22381448eff86a572fea32400000000"/>
+		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаСписка.Form" id="b6daf566-1c37-4564-9835-033d42b89a07.0" configVersion="ae43a195fe6ef642988f8d18274327a000000000"/>
 		<Metadata name="Document.ЗаявкаНаМедосмотр.Help" id="3b52e56c-23a4-4fe9-8d19-108426fd0aae.1" configVersion="89c6310192022d4f8b8ed323742b184d00000000"/>
 		<Metadata name="Document.ЗаявкаНаМедосмотр.ManagerModule" id="3b52e56c-23a4-4fe9-8d19-108426fd0aae.2" configVersion="f8ec1499be3055459480958397b9877700000000"/>
 		<Metadata name="Document.ЗаявкаНаМедосмотр.ObjectModule" id="3b52e56c-23a4-4fe9-8d19-108426fd0aae.0" configVersion="b7ff7c84a24d5349a6f290ad668176d600000000"/>

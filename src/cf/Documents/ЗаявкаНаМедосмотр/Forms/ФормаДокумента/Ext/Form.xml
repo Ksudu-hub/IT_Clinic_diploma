@@ -21,7 +21,6 @@
 		</InputField>
 		<InputField name="Пациент" id="40">
 			<DataPath>Объект.Пациент</DataPath>
-			<ReadOnly>true</ReadOnly>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
 			<ContextMenu name="ПациентКонтекстноеМеню" id="41"/>
 			<ExtendedTooltip name="ПациентРасширеннаяПодсказка" id="42"/>
