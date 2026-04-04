@@ -2,7 +2,7 @@
 <ConfigDumpInfo xmlns="http://v8.1c.ru/8.3/xcf/dumpinfo" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" format="Hierarchical" version="2.18">
 	<ConfigVersions>
 		<Metadata name="CommonModule.Док_ЗаявкаНаМедосмотр" id="84af7d94-cd2a-439c-8274-b74a7be8e5a5" configVersion="738dbcba5ca702f7dd37fed9fe94d5a9aada4d89"/>
-		<Metadata name="CommonModule.Док_ЗаявкаНаМедосмотр.Module" id="84af7d94-cd2a-439c-8274-b74a7be8e5a5.0" configVersion="a161b7f01adfd4c5f63a24ea080ab7c2acac1c41"/>
+		<Metadata name="CommonModule.Док_ЗаявкаНаМедосмотр.Module" id="84af7d94-cd2a-439c-8274-b74a7be8e5a5.0" configVersion="9055c430d38c5d8e92382a3d737739c17f276057"/>
 		<Metadata name="CommonModule.Мокито" id="b5c40903-c446-420c-824e-07c58f5b7021" configVersion="1406fd97010efb6019dee797fccfa2fab2b88b1d"/>
 		<Metadata name="CommonModule.Мокито.Module" id="b5c40903-c446-420c-824e-07c58f5b7021.0" configVersion="9f875e76f7db21a875cf38d1a3731806830d46ad"/>
 		<Metadata name="CommonModule.МокитоОбучение" id="e25ecfb4-02ca-4764-84e7-dfc8cdaa02dc" configVersion="4b75e896f63cc0b3cf7a38ac4a152be466ce8334"/>

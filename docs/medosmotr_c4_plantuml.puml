@@ -2,22 +2,24 @@
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-
 title Взаимодействие участников и систем в процессе медосмотра
 
-Enterprise_Boundary(ExtEnterprise, "Ext Предприятие") {
-    Person_Ext(HR, "Сотрудник кадровой службы", "Формирует и отправляет заявки на медосмотр, получает заключение от пациента")
+Person_Ext(HR, "Сотрудник кадровой службы предприятия")
+Person_Ext(Patient, "Пациент")
+
+System_Ext(EnterpriseSystem, "Предприятие")
+System_Ext(RMQ, "Сервер сообщений RabbitMQ")
+
+System_Boundary(Clinic, "МИС IT-Клиника") {
+    Container_Boundary(Medosomtr, "Медосмотры") {
+        System(ARM, "АРМ председателя врачебной комиссии")
+    }
+    
 }
 
-Person_Ext(Patient, "Пациент", "Проходит медицинский осмотр и передает заключение кадровой службе")
-
-System_Boundary(Clinic, "IT-Клиника") {
-    Container(RMQ, "RabbitMQ", "Сервер сообщений", "Внутренний транспорт обмена заявками на медосмотр")
-    Container(ARM, "АРМ председателя врачебной комиссии", "1С:Предприятие", "Рабочее место председателя: просмотр списка пациентов, обработка заявок и оформление заключений")
-}
-
-Rel(HR, RMQ, "Передает заявки на медосмотр")
-Rel(RMQ, ARM, "Передает данные заявок", "RMQ message")
+Rel_D(EnterpriseSystem, HR, "Выдает поручение организовать медосмотр")
+Rel_D(HR, RMQ, "Загружает заявки на медосмотр", "AMQP")
+Rel(RMQ, ARM, "Передает заявки на медосмотр", "AMQP")
 
 Rel_R(ARM, Patient, "Выдает заключение по результатам медосмотра")
 Rel(Patient, HR, "Передает бумажное заключение")
