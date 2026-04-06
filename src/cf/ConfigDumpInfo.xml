@@ -659,8 +659,8 @@
 		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаДокумента" id="cbbe23d6-2740-4d5e-82f5-0c7eb1518920" configVersion="fbc60e07d9e0eb49ab41482d6802d43200000000"/>
 		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаДокумента.Form" id="cbbe23d6-2740-4d5e-82f5-0c7eb1518920.0" configVersion="b9660163d310454aa77eba53341b03ab00000000"/>
 		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаДокумента.Help" id="cbbe23d6-2740-4d5e-82f5-0c7eb1518920.1" configVersion="b259e2b1fe3eac41ad9ee55c85b1c36300000000"/>
-		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаСписка" id="b6daf566-1c37-4564-9835-033d42b89a07" configVersion="c606b999f22381448eff86a572fea32400000000"/>
-		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаСписка.Form" id="b6daf566-1c37-4564-9835-033d42b89a07.0" configVersion="ae43a195fe6ef642988f8d18274327a000000000"/>
+		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаСписка" id="b6daf566-1c37-4564-9835-033d42b89a07" configVersion="3e11c96d62340440bf846f0524f9938800000000"/>
+		<Metadata name="Document.ЗаявкаНаМедосмотр.Form.ФормаСписка.Form" id="b6daf566-1c37-4564-9835-033d42b89a07.0" configVersion="0c36257eb537ee4f90fbc24b4438626f00000000"/>
 		<Metadata name="Document.ЗаявкаНаМедосмотр.Help" id="3b52e56c-23a4-4fe9-8d19-108426fd0aae.1" configVersion="89c6310192022d4f8b8ed323742b184d00000000"/>
 		<Metadata name="Document.ЗаявкаНаМедосмотр.ManagerModule" id="3b52e56c-23a4-4fe9-8d19-108426fd0aae.2" configVersion="f8ec1499be3055459480958397b9877700000000"/>
 		<Metadata name="Document.ЗаявкаНаМедосмотр.ObjectModule" id="3b52e56c-23a4-4fe9-8d19-108426fd0aae.0" configVersion="b7ff7c84a24d5349a6f290ad668176d600000000"/>
@@ -941,8 +941,8 @@
 		<Metadata name="ScheduledJob.ПерестроениеАгрегатовПродаж.Schedule" id="ea8d5a24-df99-447f-b00e-725a0c392972.0" configVersion="45ffab551d8872449d090488597bbc7f00000000"/>
 		<Metadata name="ScheduledJob.СлияниеИндексаППД" id="0874a3c0-0d16-4172-b467-f0666d5fcaee" configVersion="146ca2affd2c7f4397f540bc3193c6c400000000"/>
 		<Metadata name="ScheduledJob.СлияниеИндексаППД.Schedule" id="0874a3c0-0d16-4172-b467-f0666d5fcaee.0" configVersion="31a6c55219e90743bc2e76381b1ed18200000000"/>
-		<Metadata name="ScheduledJob.ЧтениеОбъектовRMQ" id="c5f54914-049e-41dc-bcd8-feb734cca99f" configVersion="d0616ccfdcc9744bb62903d4044bc73400000000"/>
-		<Metadata name="ScheduledJob.ЧтениеОбъектовRMQ.Schedule" id="c5f54914-049e-41dc-bcd8-feb734cca99f.0" configVersion="646a680b58aefc4885fb56a1ac608cd500000000"/>
+		<Metadata name="ScheduledJob.ЧтениеОбъектовRMQ" id="c5f54914-049e-41dc-bcd8-feb734cca99f" configVersion="5682ea96a3f32649856634f4c095c82700000000"/>
+		<Metadata name="ScheduledJob.ЧтениеОбъектовRMQ.Schedule" id="c5f54914-049e-41dc-bcd8-feb734cca99f.0" configVersion="bd093e251ffa254195e413207939c7cc00000000"/>
 		<Metadata name="SessionParameter.ТекущийПользователь" id="9613951b-d598-4dd7-91bd-6a4c0b521037" configVersion="3f780e7b8031344396c142ac29433d4a00000000"/>
 		<Metadata name="SessionParameter.ЯщикIMAP" id="0b3b80be-7c19-48dc-be95-bb442c3e76c1" configVersion="79f3ac9af550bb4da3946cf4f1ca8b1000000000"/>
 		<Metadata name="SettingsStorage.ХранилищеВариантовОтчетов" id="b1e208c6-c2f8-4bfc-b236-ea48c762a748" configVersion="ee934bbe931b9b448351bca678293c0800000000"/>
